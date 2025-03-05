@@ -1,10 +1,12 @@
-﻿namespace Person.Routes
+﻿using Person.Models;
+
+namespace Person.Routes
 {
     public static class PersonRouter
     {
         public static void PersonRoutes(this WebApplication app)
         {
-            app.MapGet("person", () => "Working...");
+            app.MapGet("person", () => new Persons("Luiz Araujo"));
         }
     }
 }
