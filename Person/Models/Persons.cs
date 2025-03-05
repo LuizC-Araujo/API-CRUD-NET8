@@ -1,8 +1,8 @@
 ﻿namespace Person.Models
 {
-    public class Person
+    public class Persons
     {
-        public Person(string name)
+        public Persons(string name)
         {
             Name = name;
             Id = Guid.NewGuid();
