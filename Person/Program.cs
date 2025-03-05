@@ -16,7 +16,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-PersonRouter.PersonRoutes(app);
+app.PersonRoutes();
 
 app.UseHttpsRedirection();
 app.Run();
