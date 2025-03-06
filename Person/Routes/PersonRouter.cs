@@ -1,4 +1,5 @@
-﻿using Person.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Person.Data;
 using Person.Models;
 
 namespace Person.Routes
@@ -15,6 +16,13 @@ namespace Person.Routes
                     var person = new Persons(req.name);
                     await context.AddAsync(person);
                     await context.SaveChangesAsync();
+                });
+
+            route.MapGet("",
+                async (PersonContext context) =>
+                {
+                    var people = await context.People.ToListAsync();
+                    return Results.Ok(people);
                 });
         }
     }
