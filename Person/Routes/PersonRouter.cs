@@ -40,8 +40,8 @@ namespace Person.Routes
                     return Results.Ok(person);
                 });
 
-            route.MapPut("active/{id:guid}",
-                async (Guid id, PersonRequest req, PersonContext context) => 
+            route.MapPatch("active/{id:guid}",
+                async (Guid id, PersonContext context) => 
                 {
                     var person = await context.People.FirstOrDefaultAsync(x => x.Id == id);
 
