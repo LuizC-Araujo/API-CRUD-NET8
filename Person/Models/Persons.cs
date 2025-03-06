@@ -22,5 +22,10 @@
         {
             Active = false;
         }
+
+        public void SetActive()
+        {
+            Active = true;
+        }
     }
 }
