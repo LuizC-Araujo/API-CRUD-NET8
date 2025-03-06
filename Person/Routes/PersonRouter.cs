@@ -1,4 +1,5 @@
-﻿using Person.Models;
+﻿using Person.Data;
+using Person.Models;
 
 namespace Person.Routes
 {
@@ -6,7 +7,15 @@ namespace Person.Routes
     {
         public static void PersonRoutes(this WebApplication app)
         {
-            app.MapGet("person", () => new Persons("Luiz Araujo"));
+            var route = app.MapGroup("person");
+
+            route.MapPost("",
+                async (PersonRequest req, PersonContext context) =>
+                {
+                    var person = new Persons(req.name);
+                    await context.AddAsync(person);
+                    await context.SaveChangesAsync();
+                });
         }
     }
 }
