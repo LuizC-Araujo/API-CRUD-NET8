@@ -24,6 +24,21 @@ namespace Person.Routes
                     var people = await context.People.ToListAsync();
                     return Results.Ok(people);
                 });
+
+            route.MapPut("{id:guid}",
+                async (Guid id, PersonRequest req, PersonContext context) =>
+                {
+                    var person = await context.People.FirstOrDefaultAsync(x => x.Id == id);
+                    //var person = await context.People.FindAsync(id);
+
+                    if (person == null)
+                        return Results.NotFound();
+
+                    person.ChangeName(req.name);
+                    await context.SaveChangesAsync();
+
+                    return Results.Ok(person);
+                });
         }
     }
 }
